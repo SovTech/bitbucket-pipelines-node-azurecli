@@ -1,3 +1,4 @@
+# Version 0.0.1
 FROM node:carbon-jessie
 
 # Download the necessary tools to deploy to kubernetes
