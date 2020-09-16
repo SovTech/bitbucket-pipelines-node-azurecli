@@ -1,16 +1,25 @@
-# Version 0.0.2
-FROM node:carbon-jessie
+# Version 1.0.1
+FROM node:lts-alpine
 
-# Download the necessary tools to deploy to kubernetes
-RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-RUN chmod +x ./kubectl
-RUN mv ./kubectl /usr/local/bin/kubectl
+# Install base and dev packages
+RUN apk update
+RUN apk add --no-cache --virtual .build-deps
+RUN apk add bash
 
-# Install Azure CLI
-RUN apt-get update && apt-get install -y libssl-dev libffi-dev python-dev python-pip
+# Install build packages
+RUN apk add make && apk add curl && apk add openssh && apk add git && apk add jq
+
+# Set timezone to UTC by default
+RUN ln -sf /usr/share/zoneinfo/Etc/UTC /etc/localtime
+
+# Install azure-cli
+RUN apk -Uuv add groff less gcc musl-dev openssl-dev libssl-dev libffi-dev python-dev python-pip
+
 RUN curl -L https://aka.ms/InstallAzureCliBundled -o azure-cli_bundle.tar.gz
 RUN tar -xvzf azure-cli_bundle.tar.gz
 RUN azure-cli_bundle_*/installer
 ENV PATH=$PATH:/root/bin
+
+RUN yarn global add typescript
 
 CMD ["/bin/bash"]
