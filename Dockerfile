@@ -13,7 +13,7 @@ RUN apk add make && apk add curl && apk add openssh && apk add git && apk add jq
 RUN ln -sf /usr/share/zoneinfo/Etc/UTC /etc/localtime
 
 # Install azure-cli
-RUN apk -Uuv add groff less gcc musl-dev openssl-dev libssl-dev libffi-dev python-dev python-pip
+RUN apk -Uuv add libssl-dev libffi-dev python-dev python-pip
 
 RUN curl -L https://aka.ms/InstallAzureCliBundled -o azure-cli_bundle.tar.gz
 RUN tar -xvzf azure-cli_bundle.tar.gz
