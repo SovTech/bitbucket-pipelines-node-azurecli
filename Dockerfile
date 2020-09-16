@@ -1,5 +1,5 @@
 # Version 1.0.1
-FROM node:lts-stretch
+FROM node:lts-jessie
 
 # Download the necessary tools to deploy to kubernetes
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
