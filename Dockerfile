@@ -8,6 +8,6 @@ RUN mv ./kubectl /usr/local/bin/kubectl
 
 # Install Azure CLI
 RUN apt-get update && apt-get install -y libssl-dev libffi-dev python-dev python-pip
-RUN curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
 CMD ["/bin/bash"]
