@@ -1,4 +1,4 @@
-# Version 0.0.2
+# Version 1.0.1
 FROM node:lts-alpine
 
 # Install base and dev packages
